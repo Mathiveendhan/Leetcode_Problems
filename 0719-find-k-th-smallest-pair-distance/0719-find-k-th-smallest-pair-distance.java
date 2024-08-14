@@ -1,13 +1,32 @@
+import java.util.Arrays;
+
 public class Solution {
     public int smallestDistancePair(int[] nums, int k) {
-        ArrayList<Integer> ans=new ArrayList<>();
-        for(int i=0;i<nums.length;i++){
-            for(int j=i+1;j<nums.length;j++){
-                int diff = Math.abs(nums[i] - nums[j]);
-                ans.add(diff);
+        Arrays.sort(nums);
+        int left = 0, right = nums[nums.length - 1] - nums[0];
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (countPairs(nums, mid) < k) {
+                left = mid + 1;
+            } else {
+                right = mid;
             }
         }
-        Collections.sort(ans);
-        return ans.get(k-1);
+        return left;
+    }
+
+    private int countPairs(int[] nums, int mid) {
+        int count = 0;
+        int left = 0;
+        
+        for (int right = 0; right < nums.length; right++) {
+            while (nums[right] - nums[left] > mid) {
+                left++;
+            }
+            count += right - left;
+        }
+        
+        return count;
     }
 }
