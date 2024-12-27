@@ -5,7 +5,7 @@ class Solution {
             num.add(w);
         }
         int a=k;
-        for(int i=1;i<1001;i++){
+        for(int i=1;i<10000;i++){
             if(!num.contains(i)){
                 a--;
                 if(a==0){
