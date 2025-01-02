@@ -22,16 +22,12 @@ class Solution {
            }
         }
 
-        ArrayList<Integer> arr1=new ArrayList<>();
-        ArrayList<Integer> arr2=new ArrayList<>();
-
-        for(int i:m1.keySet()){
-            arr1.add(i);
+        if (!m1.keySet().equals(m2.keySet())) {
+            return false;
         }
 
-        for(int j:m2.keySet()){
-            arr2.add(j);
-        }
+        ArrayList<Integer> arr1 = new ArrayList<>(m1.values());
+        ArrayList<Integer> arr2 = new ArrayList<>(m2.values());
 
         Collections.sort(arr1);
         Collections.sort(arr2);
