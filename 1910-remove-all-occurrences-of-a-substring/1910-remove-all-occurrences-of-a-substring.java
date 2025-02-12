@@ -9,7 +9,6 @@ class Solution {
         }
         return sb.toString();
     }
-
     public String removeOccurrences(String s, String part) {
         String str = s;
         while (str.contains(part)) {
