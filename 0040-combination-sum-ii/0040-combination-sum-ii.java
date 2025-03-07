@@ -1,24 +1,27 @@
 class Solution {
+    public static void f(int i, int[] arr, List<List<Integer>> ans, int target, ArrayList<Integer> ds) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+        for (int j = i; j < arr.length; j++) {
+            if (j > i && arr[j] == arr[j - 1]) {
+                continue;
+            }
+            if(arr[i]>target) break;
+
+            if (arr[j] <= target) {
+                ds.add(arr[j]);
+                f(j + 1, arr, ans, target - arr[j], ds);
+                ds.remove(ds.size() - 1);
+            }
+        }
+    }
+
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> ds = new ArrayList<>();
         Arrays.sort(candidates);
-        combination(candidates, target, ans, ds, 0);
+        f(0, candidates, ans, target, new ArrayList<>());
         return ans;
-    }
-    public void combination(int[] candidates, int target, List<List<Integer>> ans, List<Integer> ds, int index) {
-        if(target == 0) {
-            ans.add(new ArrayList<>(ds));
-            return ;
-        }
-        for(int i = index ; i < candidates.length; i++) {
-
-            if(i > index && candidates[i] == candidates[i-1])   continue;
-            if(candidates[i] > target) break;
-
-            ds.add(candidates[i]);
-            combination(candidates, target - candidates[i], ans, ds, i + 1);
-            ds.remove(ds.size() - 1);
-        }
     }
 }
