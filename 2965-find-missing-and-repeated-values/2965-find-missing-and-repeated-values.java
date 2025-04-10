@@ -11,7 +11,7 @@ class Solution {
             }
         }
 
-        Collections.sort(arr);
+        //Collections.sort(arr);
 
         for (int i : arr) {
             if (!set.contains(i)) {
