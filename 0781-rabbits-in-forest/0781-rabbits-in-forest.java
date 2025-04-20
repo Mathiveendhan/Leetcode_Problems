@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public int numRabbits(int[] answers) {
         Map<Integer, Integer> map = new HashMap<>();
