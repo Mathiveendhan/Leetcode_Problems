@@ -3,15 +3,21 @@ class Solution {
         int cur=nums[0];
         int max=nums[0];
         for(int i=1;i<nums.length;i++){
-            if(cur+nums[i]>nums[i]){
-                cur+=nums[i];
-            }else{
-                cur=nums[i];
-            }
+            cur = Math.max(nums[i], cur + nums[i]);
+            max = Math.max(max, cur);
 
-            if(cur>max){
-                max=cur;
-            }
+            
+            //      or
+
+            // if(cur+nums[i]>nums[i]){
+            //     cur+=nums[i];
+            // }else{
+            //     cur=nums[i];
+            // }
+
+            // if(cur>max){
+            //     max=cur;
+            // }
         }
         return max;
     }
