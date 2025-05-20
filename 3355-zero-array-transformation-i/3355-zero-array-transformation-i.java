@@ -22,3 +22,26 @@ class Solution {
 
     }
 }
+
+// class Solution {
+//     public static void call(int[] num,int l,int r){
+//         while(l<=r){
+//            if(num[l]!=0){
+//                num[l]--;
+//             }
+//             l++; 
+//         } 
+//     }
+//     public boolean isZeroArray(int[] nums, int[][] queries) {
+//         int[] num=nums.clone();
+//         for(int[] arr:queries){
+//             call(num,arr[0],arr[1]);
+//         }
+//         for(int i:num){
+//             if(i>0){
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// }
