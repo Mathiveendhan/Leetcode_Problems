@@ -21,3 +21,16 @@ class Solution {
         
     }
 }
+// class Solution {
+//     public boolean isSubsequence(String s, String t) {
+//      int count=0;
+//      int a=0;
+//      for(int i=0;i<t.length();i++){
+//         if(a<s.length() && s.charAt(a)==t.charAt(i)){
+//             count++;
+//             a++;
+//         }
+//      }
+//      return count==s.length()?true:false;   
+//     }
+// }
