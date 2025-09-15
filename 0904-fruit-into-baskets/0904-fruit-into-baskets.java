@@ -2,7 +2,7 @@ class Solution {
     public int totalFruit(int[] fruits) {
        int l=0,r=0,maxlen=0;
         HashMap<Integer,Integer> map=new HashMap<>();
-        if(fruits.length<=2) return fruits.length;
+        //if(fruits.length<=2) return fruits.length;
         while(l<fruits.length){
             map.put(fruits[l],map.getOrDefault(fruits[l], 0)+1);
             if(map.size()<=2){
