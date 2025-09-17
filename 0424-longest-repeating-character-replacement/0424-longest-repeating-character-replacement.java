@@ -8,7 +8,7 @@ class Solution {
             freqs.put(c, freqs.getOrDefault(c, 0) + 1);
             maxFreq = Math.max(maxFreq, freqs.get(c));
 
-            while ((j - i + 1) - maxFreq > k) {
+            if ((j - i + 1) - maxFreq > k) {
                 char left = s.charAt(i);
                 freqs.put(left, freqs.get(left) - 1);
                 i++;
