@@ -1,51 +1,26 @@
 class Solution {
-    public void setZeroes(int[][] mat) {
-        int rows = mat.length;
-        int cols = mat[0].length;
-        boolean fcol = false;
-        boolean frow = false;
-        for (int i = 0; i < rows; i++) {
-            if (mat[i][0] == 0) {
-                fcol = true;
-                break;
-            }
-        }
-        for (int i = 0; i < cols; i++) {
-            if (mat[0][i] == 0) {
-                frow = true;
-                break;
-            }
+     public static void call(int[][] matrix,int row,int col){
+        for(int i=0;i<matrix[0].length;i++){
+            matrix[row][i]=0;
         }
 
-        for (int i = 1; i < rows; i++) {
-            for (int j = 1; j < cols; j++) {
-                if (mat[i][j] == 0) {
-                    mat[0][j] = 0;
-                    mat[i][0] = 0;
-                }
-            }
+        for(int j=0;j<matrix.length;j++){
+            matrix[j][col]=0;
         }
+    }
+    public void setZeroes(int[][] matrix) {
+        int[][] check=matrix.clone();
 
-        for (int i = 1; i < rows; i++) {
-            if (mat[i][0] == 0) {
-                Arrays.fill(mat[i], 0);
-            }
+        for(int a=0;a<matrix.length;a++){
+            check[a]=matrix[a].clone();
         }
+        
 
-        for (int j = 1; j < cols; j++) {
-            if (mat[0][j] == 0) {
-                for (int i = 1; i < rows; i++) {
-                    mat[i][j] = 0;
-                }
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0 && check[i][j]==0)  call(matrix,i,j);
             }
         }
-        if (fcol) {
-            for (int i = 0; i < rows; i++) {
-                mat[i][0] = 0;
-            }
-        }
-        if (frow) {
-            Arrays.fill(mat[0], 0);
-        }
+        
     }
 }
