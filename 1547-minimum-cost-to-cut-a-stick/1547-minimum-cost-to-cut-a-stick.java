@@ -2,19 +2,43 @@ import java.util.*;
 
 class Solution {
 
-    static int[][] dp;
-
     public static int recursion(int i, int j, int[] arr) {
-        if (j - i <= 1) return 0;
 
-        if (dp[i][j] != -1) return dp[i][j];
+        if (j - i <= 1) {
+            return 0;
+        }
 
         int min = Integer.MAX_VALUE;
 
         for (int idx = i + 1; idx < j; idx++) {
+
             int cost = (arr[j] - arr[i])
                     + recursion(i, idx, arr)
                     + recursion(idx, j, arr);
+
+            min = Math.min(min, cost);
+        }
+
+        return min;
+    }
+
+    public static int memoization(int i, int j, int[] arr, int[][] dp) {
+
+        if (j - i <= 1) {
+            return 0;
+        }
+
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+
+        int min = Integer.MAX_VALUE;
+
+        for (int idx = i + 1; idx < j; idx++) {
+
+            int cost = (arr[j] - arr[i])
+                    + memoization(i, idx, arr, dp)
+                    + memoization(idx, j, arr, dp);
 
             min = Math.min(min, cost);
         }
@@ -23,9 +47,10 @@ class Solution {
     }
 
     public int minCost(int n, int[] cuts) {
-        int c = cuts.length;
-        int[] arr = new int[c + 2];
 
+        int c = cuts.length;
+
+        int[] arr = new int[c + 2];
         arr[0] = 0;
         arr[c + 1] = n;
 
@@ -35,9 +60,10 @@ class Solution {
 
         Arrays.sort(arr);
 
-        dp = new int[c + 2][c + 2];
+        int[][] dp = new int[c + 2][c + 2];
         for (int[] row : dp) Arrays.fill(row, -1);
 
-        return recursion(0, c + 1, arr);
+        //return recursion(0, c + 1, arr);
+        return memoization(0, c + 1, arr, dp);
     }
 }
