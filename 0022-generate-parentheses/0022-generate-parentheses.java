@@ -12,7 +12,7 @@ class Solution {
         sb.append("(");
         call(n,openP+1,closeP,sb,ans);
         sb.deleteCharAt(sb.length()-1);
-        if(closeP<openP){
+        if(openP>closeP){
             sb.append(")");
             call(n,openP,closeP+1,sb,ans);
             sb.deleteCharAt(sb.length()-1);
