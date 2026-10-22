@@ -1,50 +1,17 @@
 class Solution {
+    public static int steps(int n,HashMap<Integer,Integer> map){
+        if(n==0) return 1;
+        if(n<0) return 0;
+        if(map.containsKey(n)){
+            return map.get(n);
+        }
+        int oneStep=steps(n-1,map);
+        int twoStep=steps(n-2,map);
+        map.put(n,oneStep+twoStep);
+        return oneStep+twoStep;
+    }
     public int climbStairs(int n) {
-            if (n == 0 || n == 1) return 1;
-            
-            int[] dp = new int[n + 1];
-            dp[0] = 1; 
-            dp[1] = 1;
-
-            for (int i = 2; i <= n; i++) {
-                dp[i] = dp[i - 1] + dp[i - 2];
-            }
-
-            return dp[n];
+        HashMap<Integer,Integer> map=new HashMap<>();
+        return steps(n,map);
     }
 }
-
-// class Solution {
-//     public static int call(int n,HashMap<Integer,Integer> map){
-//         if(n==0){
-//             return 1;
-//         }
-//         if (n < 0) return 0; 
-//         if (map.containsKey(n)) return map.get(n);
-//         int ways = call(n - 1, map) + call(n - 2, map);
-//         map.put(n, ways);
-//         return ways;
-//     }
-//     public int climbStairs(int n) {
-//         return call(n,new HashMap<>());
-//     }
-// }
-
-
-// class Solution {
-//     static int count=0;
-//     public static void call(int n){
-//         if(n==0){
-//             count++;
-//             return;
-//         }
-//         if(n<0) return;
-//         call(n-1);
-//         call(n-2);
-//     }
-//     public int climbStairs(int n) {
-//        count=0;
-//        call(n);
-//        return count;
-//     }
-// }
