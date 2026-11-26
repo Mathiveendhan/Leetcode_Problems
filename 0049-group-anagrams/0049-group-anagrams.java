@@ -1,17 +1,32 @@
+import java.util.*;
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<>();
-		for (String str : strs) {
-			char[] array = str.toCharArray();
-			Arrays.sort(array);
-			String sortedStr = new String(array);
-			List<String> list = map.getOrDefault(sortedStr, new ArrayList<>());
-			list.add(str);
-			map.put(sortedStr, list);
-		}
-		return new ArrayList<>(map.values());
+        Map<String,List<String>> map=new HashMap<String,List<String>>();
+        for(String s:strs){
+            char[] ch=s.toCharArray();
+            Arrays.sort(ch);
+            String str1=new String(ch);
+            map.putIfAbsent(str1,new ArrayList<String>());
+            map.get(str1).add(s);
+        }
+        return new ArrayList<List<String>>(map.values());
     }
 }
+
+// class Solution {
+//     public List<List<String>> groupAnagrams(String[] strs) {
+//         Map<String, List<String>> map = new HashMap<>();
+// 		for (String str : strs) {
+// 			char[] array = str.toCharArray();
+// 			Arrays.sort(array);
+// 			String sortedStr = new String(array);
+// 			List<String> list = map.getOrDefault(sortedStr, new ArrayList<>());
+// 			list.add(str);
+// 			map.put(sortedStr, list);
+// 		}
+// 		return new ArrayList<>(map.values());
+//     }
+// }
 
 // import java.util.*;
 
